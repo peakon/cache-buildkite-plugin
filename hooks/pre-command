@@ -6,7 +6,7 @@ if [[ "${BUILDKITE_PLUGIN_CACHE_DEBUG:-false}" =~ (true|on|1) ]]; then
   set -x
 fi
 
-if [[ -n "${BUILDKITE_PLUGIN_CACHE_S3_PROFILE}" ]]; then
+if [[ -n "${BUILDKITE_PLUGIN_CACHE_S3_PROFILE:-}" ]]; then
   aws_cli_profile_arg="--profile ${BUILDKITE_PLUGIN_CACHE_S3_PROFILE}"
 else
   aws_cli_profile_arg=""
