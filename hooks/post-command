@@ -11,6 +11,11 @@ if [ ${BUILDKITE_COMMAND_EXIT_STATUS} -ne 0 ]; then
   exit 0
 fi
 
+if [[ -n "${BUILDKITE_PLUGIN_CACHE_S3_PROFILE}" ]]; then
+  aws_cli_profile_arg="--profile ${BUILDKITE_PLUGIN_CACHE_S3_PROFILE}"
+else
+  aws_cli_profile_arg=""
+fi
 
 if [[ -n "${BUILDKITE_PLUGIN_CACHE_CACHE_KEY:-}" ]]; then
 
@@ -68,7 +73,7 @@ if [[ -n "${BUILDKITE_PLUGIN_CACHE_CACHE_KEY:-}" ]]; then
       if [ ! -f "$TAR_FILE" ]; then
         tar --ignore-failed-read -cf "${TAR_FILE}" "${paths[*]}"
       fi
-      aws s3 sync "$TAR_FILE" "s3://${bucket}/${TAR_FILE}" --profile="${BUILDKITE_PLUGIN_CACHE_S3_PROFILE}" --delete
+      aws s3 sync "$TAR_FILE" "s3://${bucket}/${TAR_FILE}" $aws_cli_profile_arg --delete
       rm -f "${TAR_FILE}"
     fi
 
@@ -90,7 +95,7 @@ if [[ -n "${BUILDKITE_PLUGIN_CACHE_CACHE_KEY:-}" ]]; then
       if [ ! -f "$TAR_FILE" ]; then
         tar --ignore-failed-read -cf "${TAR_FILE}" "${paths[@]}"
       fi
-      aws s3 cp "${TAR_FILE}" "s3://${bucket}/${TAR_FILE}" --profile="${BUILDKITE_PLUGIN_CACHE_S3_PROFILE}" --delete
+      aws s3 cp "${TAR_FILE}" "s3://${bucket}/${TAR_FILE}" $aws_cli_profile_arg --delete
       rm -f "${TAR_FILE}"
     fi
   fi

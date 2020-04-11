@@ -34,7 +34,7 @@ variables defined in your agent.
 
 ```bash
 export BUILDKITE_PLUGIN_CACHE_S3_BUCKET_NAME="my-unique-s3-bucket-name"
-export BUILDKITE_PLUGIN_CACHE_S3_PROFILE="my-s3-profile"
+export BUILDKITE_PLUGIN_CACHE_S3_PROFILE="my-s3-profile" # optional
 ```
 
 The paths are synced using Amazon S3 into your bucket using a structure of

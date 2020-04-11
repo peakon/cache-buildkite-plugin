@@ -18,5 +18,5 @@ configuration:
       type: [ string, array ]
     env:
       type: [ string, array ]
-      minimum: 2
+      minimum: 1
   additionalProperties: false
