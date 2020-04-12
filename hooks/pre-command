@@ -40,12 +40,12 @@ if [[ -n "${BUILDKITE_PLUGIN_CACHE_CACHE_KEY:-}" ]]; then
     TAR_FILE="${cache_key}.tar"
     bucket="${BUILDKITE_PLUGIN_CACHE_S3_BUCKET_NAME}/${BUILDKITE_ORGANIZATION_SLUG}/${BUILDKITE_PIPELINE_SLUG}"
     aws s3api head-object --bucket "${BUILDKITE_PLUGIN_CACHE_S3_BUCKET_NAME}" --key "${BUILDKITE_ORGANIZATION_SLUG}/${BUILDKITE_PIPELINE_SLUG}/${TAR_FILE}" || not_exist=true
-    if [ $not_exist ]; then
+    if [ ${not_exist:-false} ]; then
       echo "s3://${bucket}/${TAR_FILE} does not exist"
     else
       aws s3 cp "s3://${bucket}/${TAR_FILE}" . $aws_cli_profile_arg
       tar -xf "${TAR_FILE}" -C .
     fi
   fi
-  
+
 fi
