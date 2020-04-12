@@ -19,4 +19,8 @@ configuration:
     env:
       type: [ string, array ]
       minimum: 1
+    save:
+      type: boolean
+    restore:
+      type: boolean
   additionalProperties: false

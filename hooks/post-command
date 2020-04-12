@@ -6,6 +6,10 @@ if [[ "${BUILDKITE_PLUGIN_CACHE_DEBUG:-false}" =~ (true|on|1) ]]; then
   set -x
 fi
 
+if [ ! ${BUILDKITE_PLUGIN_CACHE_SAVE:-true} ]; then
+  exit 0
+fi
+
 if [ ${BUILDKITE_COMMAND_EXIT_STATUS} -ne 0 ]; then
   echo "~~~ Cache is skipped because step returned ${BUILDKITE_COMMAND_EXIT_STATUS}"
   exit 0
