@@ -73,7 +73,7 @@ if [[ -n "${BUILDKITE_PLUGIN_CACHE_CACHE_KEY:-}" ]]; then
       if [ ! -f "$TAR_FILE" ]; then
         tar --ignore-failed-read -cf "${TAR_FILE}" "${paths[*]}"
       fi
-      aws s3 sync "$TAR_FILE" "s3://${bucket}/${TAR_FILE}" $aws_cli_profile_arg --delete
+      aws s3 cp "$TAR_FILE" "s3://${bucket}/${TAR_FILE}" $aws_cli_profile_arg --delete
       rm -f "${TAR_FILE}"
     fi
 
