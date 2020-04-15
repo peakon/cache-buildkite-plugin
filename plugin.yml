@@ -19,8 +19,8 @@ configuration:
     env:
       type: [ string, array ]
       minimum: 1
-    save:
+    skip_save:
       type: boolean
-    restore:
+    skip_restore:
       type: boolean
   additionalProperties: false
