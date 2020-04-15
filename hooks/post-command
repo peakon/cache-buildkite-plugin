@@ -6,8 +6,8 @@ if [[ "${BUILDKITE_PLUGIN_CACHE_DEBUG:-false}" =~ (true|on|1) ]]; then
   set -x
 fi
 
-if [[ ! ${BUILDKITE_PLUGIN_CACHE_SKIP_SAVE:-false} =~ (true|on|1) ]]; then
-  echo "~~~ Cache saving is skipped because skip_save: ${BUILDKITE_PLUGIN_CACHE_SKIP_SAVE}"
+if [[ "${BUILDKITE_PLUGIN_CACHE_SKIP_SAVE:-false}" =~ (true|on|1) ]]; then
+  echo "~~~ Cache saving is skipped"
   exit 0
 fi
 
