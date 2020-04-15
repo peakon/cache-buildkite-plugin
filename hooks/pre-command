@@ -47,7 +47,7 @@ if [[ -n "${BUILDKITE_PLUGIN_CACHE_CACHE_KEY:-}" ]]; then
     if ${not_exist:-false}; then
       echo "s3://${bucket}/${TAR_FILE} does not exist"
     else
-      aws s3 cp "s3://${bucket}/${TAR_FILE}" . $aws_cli_profile_arg
+      aws s3 cp "s3://${bucket}/${TAR_FILE}" . $aws_cli_profile_arg --only-show-errors
       tar -xf "${TAR_FILE}" -C .
     fi
   fi
