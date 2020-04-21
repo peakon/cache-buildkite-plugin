@@ -49,9 +49,4 @@ configuration:
           name: 
             type: string
         required: [ "key" ]
-  oneOf:
-    - required:
-      - save
-    - required:
-      - restore
   additionalProperties: false
