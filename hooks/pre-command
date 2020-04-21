@@ -2,6 +2,11 @@
 # shellcheck disable=SC2001
 set -euo pipefail
 
+
+echo "${BUILDKITE_PLUGIN_CACHE_SAVE}"
+
+env
+
 if [[ "${BUILDKITE_PLUGIN_CACHE_DEBUG:-false}" =~ (true|on|1) ]]; then
   set -x
 fi

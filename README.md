@@ -1,5 +1,16 @@
 # Cache Buildkite Plugin
 
+      - peakon/s3-cache:
+          save:
+            - key: "foobar"
+              paths: [ "node_modules" ]
+              name: 'optional name'
+              when: 'always|on_success|on_fail'
+          restore:
+            - key: "foobar"
+              name: 'optional name to output'
+
+
 A [Buildkite plugin](https://buildkite.com/docs/agent/v3/plugins) to restore and save
 directories by cache keys. For example, use the checksum of a `.resolved` or `.lock` file
 to restore/save built dependencies between independent builds, not just jobs.

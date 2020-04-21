@@ -23,4 +23,35 @@ configuration:
       type: boolean
     skip_restore:
       type: boolean
+    save:
+      type: array
+      minimum: 1
+      items:
+        type: object
+        properties:
+          key: string
+          paths:
+            type: [string, array]
+            minimum: 1
+          name: 
+            type: string
+          when: 
+            type: string
+            enum: [ "always", "on_success", "on_failure" ]
+        required: [ "key", "paths" ]
+    restore:
+      type: array
+      minimum: 1
+      items:
+        type: object
+        properties:
+          key: string
+          name: 
+            type: string
+        required: [ "key" ]
+  oneOf:
+    - required:
+      - save
+    - required:
+      - restore
   additionalProperties: false
